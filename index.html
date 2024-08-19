@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Spinning Icons</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="portada.css" />
+        <link rel="stylesheet" href="misesp.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+    </head>
+    <body>
+        <div class="llibre">
+            <div class="pagina portada">
+                <div class="content">
+                    <h1>ñ</h1>
+                    <h2>una mirada crítica a la historia española</h2>
+                </div>
+                <div class="footer">
+                    <p>Desliza para adentrarte en este cuento...</p>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            <div class="pagina misesp">
+
+                <i class="icon-crown fas fa-crown"></i>
+                <h1>Miss España ha sido coronada!</h1>
+                <h2></h2>
+                <h2>Preo algunos creen que esto no puede ser...</h2>
+                <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium doloremque laudantium, totam rem
+                    aperiam, eaque ipsa quae ab illo inventore veritatis et
+                    quasi architecto beatae vitae dicta sunt explicabo. Nemo
+                    enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                    aut fugit, sed quia consequuntur magni dolores eos qui
+                    ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+                    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                    velit, sed quia non numquam eius modi tempora incidunt ut
+                    labore et dolore magnam aliquam quaerat voluptatem
+                </p>
+            </div>
+            <div class="pagina bisabuelo">
+                <h1>Mi bisabuelo Jaume</h1>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const pages = document.querySelectorAll(".pagina");
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                        }
+                    });
+                },
+                {
+                    root: null, // Use the viewport as the root
+                    threshold: 0.3, // Trigger when 30% of the element is in view
+                    rootMargin: "0px", // No margin around the root
+                }
+            );
+
+            pages.forEach((page) => {
+                observer.observe(page);
+            });
+        });
+    </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Define the correct icons for each page
+    const pageIcons = {
+        portada: ['fa-crown', 'fa-star', 'fa-trophy'],
+        misesp: ['fa-heart', 'fa-rocket', 'fa-gem'],
+        bisabuelo: ['fa-car', 'fa-plane', 'fa-bicycle']
+    };
+
+    // Get references to icon elements
+    const icons = document.querySelectorAll('.icon');
+
+    // Function to update icons based on the current page
+    function updateIcons() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+
+        document.querySelectorAll('.pagina').forEach(page => {
+            const pageTop = page.offsetTop;
+            const pageBottom = pageTop + page.offsetHeight;
+
+            if (scrollY + windowHeight > pageTop && scrollY < pageBottom) {
+                const pageId = Array.from(page.classList).find(cls => pageIcons[cls]);
+                const correctIcons = pageIcons[pageId] || [];
+
+                // Set the correct icons for the visible page
+                icons.forEach((icon, index) => {
+                    if (index < correctIcons.length) {
+                        icon.className = `icon fa ${correctIcons[index]}`;
+                    } else {
+                        icon.className = 'icon'; // Clear class for excess icons
+                    }
+                });
+            }
+        });
+    }
+
+    // Set up scroll event listener
+    window.addEventListener('scroll', updateIcons);
+
+    // Initial call to set up icons for the first visible page
+    updateIcons();
+});
+
+  </script>
+</html>

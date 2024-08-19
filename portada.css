@@ -1,0 +1,113 @@
+/* Define gradient backgrounds */
+
+.pagina.portada {
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    background: linear-gradient(120deg, #111, #333, #111);
+}
+.pagina.portada.visible {
+    opacity: 1;
+}
+
+.pagina.portada .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    margin-top: 25%;
+    width: 100%;
+    text-align: center;
+}
+
+/* Specific element styling */
+.pagina.portada h1 {
+    color: black;
+    font-size: 10em;
+    background: linear-gradient(70deg, #ff6a00, #ee0979);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+    opacity: 0; /* Initial state */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.pagina.portada.visible h1 {
+    opacity: 1; /* Visible state */
+}
+
+.pagina.portada h2 {
+    color: black;
+    font-size: 1.5em;
+    width: 70%;
+    text-wrap: pretty;
+    background: linear-gradient(to right, #ccc, #555);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+    opacity: 0; /* Initial state */
+    transform: translateY(-100%);
+    transition: opacity 1s ease-in-out 1s, transform 1s ease-in-out 1s;
+}
+
+.pagina.portada.visible h2 {
+    transform: translateY(0%);
+    opacity: 1; /* Visible state */
+}
+
+.pagina.portada .footer {
+    margin-top: 25%;
+    height: 10%;
+    width: 80%;
+    padding: 1em;
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1em;
+    align-items: center;
+
+    opacity: 0;
+
+    animation: scroll-rigth 2s infinite cubic-bezier(0.42, 0, 0.58, 1);
+
+    transition: opacity 1s ease-in-out 3s;
+
+    p {
+        color: #888;
+        font-size: 1.2em;
+        text-wrap: pretty;
+        text-align: center;
+    }
+
+    i {
+        font-size: 1.2em;
+        margin: 0.5em 0;
+        color: #888;
+    }
+
+}
+
+.pagina.portada.visible .footer {
+    opacity: 1;
+}
+
+@keyframes scroll-rigth {
+    0% {
+        transform: translateX(-3%);
+    }
+    50% {
+        transform: translateX(3%);
+    }
+    100% {
+        transform: translateX(-3%);
+    }
+}
