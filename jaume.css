@@ -1,0 +1,16 @@
+.pagina.jaume {
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    background-image: url('media/fons_pagina.png');
+    
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: start;
+    padding: 0;
+}
+
+.pagina.jaume.visible {
+    opacity: 1;
+}

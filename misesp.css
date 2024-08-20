@@ -78,12 +78,6 @@
     line-height: 1.6;
     margin-top: 2em;
     text-align: justify;
-    opacity: 0; /* Initial state */
-    transform: translateY(20%);
-    transition: opacity 1s ease-in-out 2s, transform 1s ease-in-out 2s;
-}
-
-.pagina.misesp.visible p {
-    opacity: 1;
-    transform: translateY(0%);
+    text-wrap: balance;
+    padding: 0 1em;
 }
